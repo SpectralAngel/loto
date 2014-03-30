@@ -1,4 +1,4 @@
-package com.zetsuei.loteria;
+package com.zetsuei.loteria.fragments;
 
 /**
  * Created by Carlos on 3/28/2014.
@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import com.zetsuei.loteria.MainActivity;
+import com.zetsuei.loteria.R;
 
 /**
  * A placeholder fragment containing a simple view.

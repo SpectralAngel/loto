@@ -1,4 +1,4 @@
-package com.zetsuei.loteria;
+package com.zetsuei.loteria.fragments;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,7 +14,10 @@ import android.widget.*;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import butterknife.Optional;
+import com.zetsuei.loteria.ModelLoader;
+import com.zetsuei.loteria.R;
+import com.zetsuei.loteria.adapters.TicketAdapter;
+import com.zetsuei.loteria.model.Ticket;
 
 import java.util.List;
 
@@ -29,20 +32,20 @@ import java.util.List;
  */
 public class TicketFragment extends Fragment implements AbsListView.OnItemClickListener {
 
-    TicketLoader mLoader;
+    TicketLoader ticketLoader;
 
-    private OnFragmentInteractionListener mListener;
+    private OnFragmentInteractionListener fragmentInteractionListener;
 
     /**
      * The fragment's ListView/GridView.
      */
-    @InjectView(android.R.id.list) ListView mListView;
+    @InjectView(android.R.id.list) ListView listView;
 
     /**
      * The Adapter which will be used to populate the ListView/GridView with
      * Views.
      */
-    private ArrayAdapter<Ticket> mAdapter;
+    private TicketAdapter ticketAdapter;
 
     // TODO: Rename and change types of parameters
     public static TicketFragment newInstance() {
@@ -64,9 +67,9 @@ public class TicketFragment extends Fragment implements AbsListView.OnItemClickL
         super.onCreate(savedInstanceState);
 
         // TODO: Change Adapter to display your content
-        mAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1);
-        mLoader = new TicketLoader(getActivity());
-        getActivity().getSupportLoaderManager().initLoader(0, null, mLoader);
+        ticketAdapter = new TicketAdapter(getActivity());
+        ticketLoader = new TicketLoader(getActivity());
+        getActivity().getSupportLoaderManager().initLoader(0, null, ticketLoader);
     }
 
     @Override
@@ -76,10 +79,10 @@ public class TicketFragment extends Fragment implements AbsListView.OnItemClickL
         ButterKnife.inject(this, view);
 
         // Set the adapter
-        mListView.setAdapter(mAdapter);
+        listView.setAdapter(ticketAdapter);
 
         // Set OnItemClickListener so we can be notified on item clicks
-        mListView.setOnItemClickListener(this);
+        listView.setOnItemClickListener(this);
 
         return view;
     }
@@ -88,7 +91,7 @@ public class TicketFragment extends Fragment implements AbsListView.OnItemClickL
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
-            mListener = (OnFragmentInteractionListener) activity;
+            fragmentInteractionListener = (OnFragmentInteractionListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
                 + " must implement OnFragmentInteractionListener");
@@ -98,17 +101,23 @@ public class TicketFragment extends Fragment implements AbsListView.OnItemClickL
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
+        fragmentInteractionListener = null;
     }
 
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if (null != mListener) {
+        if (null != fragmentInteractionListener) {
             // Notify the active callbacks interface (the activity, if the
             // fragment is attached to one) that an item has been selected.
-            //mListener.onFragmentInteraction(DummyContent.ITEMS.get(position).id);
+            //fragmentInteractionListener.onFragmentInteraction(DummyContent.ITEMS.get(position).id);
         }
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.reset(this);
     }
 
     /**
@@ -117,7 +126,7 @@ public class TicketFragment extends Fragment implements AbsListView.OnItemClickL
      * to supply the text it should use.
      */
     public void setEmptyText(CharSequence emptyText) {
-        View emptyView = mListView.getEmptyView();
+        View emptyView = listView.getEmptyView();
 
         if (emptyText instanceof TextView) {
             ((TextView) emptyView).setText(emptyText);
@@ -156,16 +165,16 @@ public class TicketFragment extends Fragment implements AbsListView.OnItemClickL
         @Override
         public void onLoadFinished(Loader<List<Ticket>> loader, List<Ticket> data)
         {
-            mAdapter.clear();
-            mAdapter.addAll(data);
-            mAdapter.notifyDataSetChanged();
+            ticketAdapter.clear();
+            ticketAdapter.addAll(data);
+            ticketAdapter.notifyDataSetChanged();
         }
 
         @Override
         public void onLoaderReset(Loader<List<Ticket>> loader)
         {
-            mAdapter.clear();
-            mAdapter.notifyDataSetChanged();
+            ticketAdapter.clear();
+            ticketAdapter.notifyDataSetChanged();
         }
     }
 

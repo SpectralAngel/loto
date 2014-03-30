@@ -1,4 +1,4 @@
-package com.zetsuei.loteria;
+package com.zetsuei.loteria.model;
 
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;

@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.widget.DrawerLayout;
+import com.zetsuei.loteria.fragments.NavigationDrawerFragment;
+import com.zetsuei.loteria.fragments.PlaceholderFragment;
+import com.zetsuei.loteria.fragments.TicketFragment;
 
 
 public class MainActivity extends ActionBarActivity
