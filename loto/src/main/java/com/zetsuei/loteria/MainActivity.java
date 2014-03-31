@@ -9,12 +9,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.widget.DrawerLayout;
 import com.zetsuei.loteria.fragments.NavigationDrawerFragment;
+import com.zetsuei.loteria.fragments.NewTicketFragment;
 import com.zetsuei.loteria.fragments.PlaceholderFragment;
-import com.zetsuei.loteria.fragments.TicketFragment;
+import com.zetsuei.loteria.fragments.TicketListFragment;
 
 
 public class MainActivity extends ActionBarActivity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks, TicketFragment.OnFragmentInteractionListener {
+        implements NavigationDrawerFragment.NavigationDrawerCallbacks, TicketListFragment.OnFragmentInteractionListener {
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -48,7 +49,7 @@ public class MainActivity extends ActionBarActivity
         FragmentManager fragmentManager = getSupportFragmentManager();
         switch (position) {
             case 1:
-                fragment = TicketFragment.newInstance();
+                fragment = TicketListFragment.newInstance();
                 break;
             default:
                 fragment = PlaceholderFragment.newInstance(position + 1);
@@ -77,7 +78,6 @@ public class MainActivity extends ActionBarActivity
         ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setDisplayShowTitleEnabled(true);
-        actionBar.setTitle(mTitle);
     }
 
 

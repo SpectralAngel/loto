@@ -30,7 +30,7 @@ import java.util.List;
  * Activities containing this fragment MUST implement the Callbacks
  * interface.
  */
-public class TicketFragment extends Fragment implements AbsListView.OnItemClickListener {
+public class TicketListFragment extends Fragment implements AbsListView.OnItemClickListener {
 
     TicketLoader ticketLoader;
 
@@ -48,8 +48,8 @@ public class TicketFragment extends Fragment implements AbsListView.OnItemClickL
     private TicketAdapter ticketAdapter;
 
     // TODO: Rename and change types of parameters
-    public static TicketFragment newInstance() {
-        TicketFragment fragment = new TicketFragment();
+    public static TicketListFragment newInstance() {
+        TicketListFragment fragment = new TicketListFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -59,7 +59,7 @@ public class TicketFragment extends Fragment implements AbsListView.OnItemClickL
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public TicketFragment() {
+    public TicketListFragment() {
     }
 
     @Override
