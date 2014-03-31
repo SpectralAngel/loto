@@ -4,6 +4,10 @@
     tools:context="com.zetsuei.loteria.MainActivity" >
     <item android:id="@+id/action_randomize"
         android:title="@string/action_randomize"
+        android:icon="@drawable/ic_action_dice"
+        app:showAsAction="withText|ifRoom" />
+    <item android:id="@+id/ic_action_content_new"
+        android:title="@string/new_ticket"
         android:icon="@drawable/ic_action_content_new"
         app:showAsAction="withText|ifRoom" />
     <item android:id="@+id/action_settings"

@@ -1,9 +1,10 @@
 package com.zetsuei.loteria.model;
 
+import android.util.Log;
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
-import org.joda.time.LocalDateTime;
+import org.joda.time.DateTime;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.Random;
 @Table(name = "Ticket")
 public class Ticket extends Model {
     @Column(name = "dateTime")
-    public LocalDateTime dateTime;
+    public DateTime dateTime;
 
     @Column(name = "numbers")
     public String numbers = "";
@@ -30,10 +31,16 @@ public class Ticket extends Model {
             }
         } while (integers.size() < 6);
         generated = true;
-        dateTime = LocalDateTime.now();
+        dateTime = DateTime.now();
         for (Integer integer : integers){
             numbers += integer + " ";
         }
+    }
+
+    public Ticket(String numbers, DateTime dateTime) {
+        this.dateTime = dateTime;
+        Log.w("Loteria", this.dateTime.toString());
+        this.numbers = numbers;
     }
 
     @Override

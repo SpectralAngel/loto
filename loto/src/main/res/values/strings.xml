@@ -10,5 +10,8 @@
     <string name="action_example">Example action</string>
     <string name="action_randomize">Generate Number</string>
     <string name="action_settings">Settings</string>
-
+    <string name="numeros">Numeros</string>
+    <string name="change_date">Cambiar Fecha</string>
+    <string name="save">Guardar</string>
+    <string name="new_ticket">Nuevo Ticket</string>
 </resources>

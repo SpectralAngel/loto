@@ -1,5 +1,6 @@
 package com.zetsuei.loteria.fragments;
 
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
 import android.app.Activity;
 import android.support.v7.app.ActionBar;
@@ -247,11 +248,19 @@ public class NavigationDrawerFragment extends Fragment {
         if (mDrawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
-
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         switch (item.getItemId()){
             case R.id.action_randomize:
                 Ticket ticket = new Ticket();
                 ticket.save();
+                return true;
+
+            case R.id.ic_action_content_new:
+                Fragment fragment = new NewTicketFragment();
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, fragment)
+                        .commit();
+
                 return true;
         }
 
